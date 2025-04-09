@@ -192,6 +192,7 @@ function logger(/* func, logFunc */) {
  *
  * @param {Function} fn
  * @return {Function}
+ * @param {...*} args1
  *
  * @example
  *   const fn = function(x1,x2,x3,x4) { return  x1 + x2 + x3 + x4; };
@@ -200,8 +201,10 @@ function logger(/* func, logFunc */) {
  *   partialUsingArguments(fn, 'a','b','c')('d') => 'abcd'
  *   partialUsingArguments(fn, 'a','b','c','d')() => 'abcd'
  */
-function partialUsingArguments(/* fn, ...args1 */) {
-  throw new Error('Not implemented');
+function partialUsingArguments(fn, ...args1) {
+  return function partial(...args2) {
+    return fn(...args1, ...args2);
+  };
 }
 
 /**
